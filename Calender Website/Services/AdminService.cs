@@ -10,13 +10,8 @@ public class AdminService
     //Save admin to json
     public async Task<bool> SaveAdmin(Admin admin)
     {
-        List<Admin> admins = await AccesJson.ReadJson<Admin>();
+        if (AdminExists(admin) is not null) return true;
 
-        foreach (Admin posibleSameAdmin in admins)
-        {
-            if (posibleSameAdmin.Email == admin.Email && posibleSameAdmin.Username == admin.Username && posibleSameAdmin.Password == admin.Password)
-                return true;
-        }
         await AccesJson.WriteJson(admin);
         return false;
     }
@@ -27,7 +22,7 @@ public class AdminService
 
         int index = admins.FindIndex(a => a.Id == admin.Id);
 
-        if (index == -1) return false;
+        if (index < 0) return false;
 
         admins[index] = admin;
         AccesJson.WriteJsonList(admins);
@@ -60,12 +55,18 @@ public class AdminService
     public async Task<Admin[]> GetManyAdmins(Guid[] ids)
     {
         List<Admin> specificAdmins = [];
-        List<Admin> allAdmins = await AccesJson.ReadJson<Admin>(); ;
+        List<Admin> allAdmins = await AccesJson.ReadJson<Admin>();
         foreach (Guid id in ids)
         {
             Admin admin = allAdmins.Find(a => a.Id == id)!;
             if (admin is not null) specificAdmins.Add(admin);
         }
         return specificAdmins.ToArray();
+    }
+
+    public async Task<Admin[]> GetAllAdmins()
+    {
+        List<Admin> allAdmins = await AccesJson.ReadJson<Admin>();
+        return allAdmins.ToArray();
     }
 }

@@ -25,5 +25,14 @@
     "LastLogIn": "0001-01-01T00:00:00",
     "LastLogOut": "0001-01-01T00:00:00",
     "LoggedIn": false
+  },
+  {
+    "Id": "7731aac5-b8b2-4811-955f-b467764fe7b2",
+    "Username": "tesst3",
+    "Password": "fsdfs",
+    "Email": "efsdf",
+    "LastLogIn": "0001-01-01T00:00:00",
+    "LastLogOut": "0001-01-01T00:00:00",
+    "LoggedIn": false
   }
 ]
