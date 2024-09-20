@@ -52,7 +52,7 @@ public class AdminService
         return admins[index];
     }
 
-    public async Task<Admin[]> GetManyAdmins(Guid[] ids)
+    /*public async Task<Admin[]> GetManyAdmins(Guid[] ids)
     {
         List<Admin> specificAdmins = [];
         List<Admin> allAdmins = await AccesJson.ReadJson<Admin>();
@@ -62,7 +62,7 @@ public class AdminService
             if (admin is not null) specificAdmins.Add(admin);
         }
         return specificAdmins.ToArray();
-    }
+    }*/
 
     public async Task<Admin[]> GetAllAdmins()
     {
